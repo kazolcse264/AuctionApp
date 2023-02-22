@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "45187926289",
+    "project_id": "auctionapp-c357c",
+    "storage_bucket": "auctionapp-c357c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45187926289:android:fe61b707e0c7bc27bd64b0",
+        "android_client_info": {
+          "package_name": "com.example.auction_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45187926289-5ibkdnvukf79scjaqmgrpealc2sse0gd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.auction_app",
+            "certificate_hash": "e6866828c502bc343071bd38f501dbb16f7d708d"
+          }
+        },
+        {
+          "client_id": "45187926289-rn0uiep1ei89bjlisqn06mggvh53uvb1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUSJV3B3BNMQw4XTqeWDH3DY92-8NEmHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45187926289-rn0uiep1ei89bjlisqn06mggvh53uvb1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45187926289:android:7a03369ecca562d7bd64b0",
+        "android_client_info": {
+          "package_name": "com.example.ostad_recruitment_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45187926289-rn0uiep1ei89bjlisqn06mggvh53uvb1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUSJV3B3BNMQw4XTqeWDH3DY92-8NEmHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45187926289-rn0uiep1ei89bjlisqn06mggvh53uvb1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
