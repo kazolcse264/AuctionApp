@@ -14,6 +14,7 @@ import 'login_page.dart';
 
 class SignUpPage extends StatefulWidget {
   static const String routeName = '/signup';
+
   const SignUpPage({Key? key}) : super(key: key);
 
   @override
@@ -21,7 +22,6 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -34,7 +34,8 @@ class _SignUpPageState extends State<SignUpPage> {
     userProvider = Provider.of<UserProvider>(context, listen: false);
     super.didChangeDependencies();
   }
-    @override
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -49,7 +50,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 36.0,vertical: 8.0),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 36.0, vertical: 8.0),
                         child: TextFormField(
                           controller: _emailController,
                           decoration: InputDecoration(
@@ -72,7 +74,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 10,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 36.0,vertical: 8.0),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 36.0, vertical: 8.0),
                         child: TextFormField(
                           obscureText: _isObscure,
                           controller: _passwordController,
@@ -108,7 +111,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 10,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 36.0,vertical: 8.0),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 36.0, vertical: 8.0),
                         child: ElevatedButton(
                           onPressed: () {
                             _authenticate();
@@ -119,16 +123,26 @@ class _SignUpPageState extends State<SignUpPage> {
                       const SizedBox(
                         height: 20,
                       ),
-                      RichText(text: TextSpan(
-                          children: [
-                            const TextSpan(text: 'Already have an account!!',
-                              style: TextStyle(color: Colors.red),),
-                            TextSpan(text: '\tLogin',
-                              style: const TextStyle(color: Colors.blue,fontWeight: FontWeight.bold,fontSize: 16,),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () => Navigator.pushNamed(context, LoginPage.routeName,),),
-                          ]
-                      ))
+                      RichText(
+                          text: TextSpan(children: [
+                        const TextSpan(
+                          text: 'Already have an account!!',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        TextSpan(
+                          text: '\tLogin',
+                          style: const TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => Navigator.pushNamed(
+                                  context,
+                                  LoginPage.routeName,
+                                ),
+                        ),
+                      ]))
                     ],
                   )),
             ],

@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/bid_price_model.dart';
@@ -43,8 +42,9 @@ class DbHelper {
     bidPriceModel.bidingId = doc.id;
     return doc.set(bidPriceModel.toMap());
   }
+
   static Future<QuerySnapshot<Map<String, dynamic>>> getBidPriceByProduct(
-      String proId) =>
+          String proId) =>
       _db
           .collection(collectionProducts)
           .doc(proId)

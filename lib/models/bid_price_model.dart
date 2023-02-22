@@ -2,7 +2,7 @@ import 'package:auction_app/models/user_model.dart';
 
 const String collectionBidPrices = 'BidPrices';
 const String bidPriceFieldBidingId = 'bidingId';
-const String bidPriceFieldBidUserModel= 'bidUserModel';
+const String bidPriceFieldBidUserModel = 'bidUserModel';
 const String bidPriceFieldProductId = 'productId';
 const String bidPriceFieldBidPrice = 'bidPrice';
 const String bidPriceFieldIsBiding = 'isBiding';
@@ -34,7 +34,7 @@ class BidPriceModel {
 
   factory BidPriceModel.fromMap(Map<String, dynamic> map) => BidPriceModel(
         bidingId: map[bidPriceFieldBidingId],
-    bidUserModel: UserModel.fromMap(map[bidPriceFieldBidUserModel]),
+        bidUserModel: UserModel.fromMap(map[bidPriceFieldBidUserModel]),
         productId: map[bidPriceFieldProductId],
         bidPrice: map[bidPriceFieldBidPrice],
         isBiding: map[bidPriceFieldIsBiding],

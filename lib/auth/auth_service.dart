@@ -2,19 +2,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
- static UserCredential? userCredential;
- static OAuthCredential? oAuthCredential;
+  static UserCredential? userCredential;
+  static OAuthCredential? oAuthCredential;
 
   static final _auth = FirebaseAuth.instance;
+
   static User? get currentUser => _auth.currentUser;
 
   static Future<bool> login(String email, String password) async {
-     userCredential = await _auth.signInWithEmailAndPassword(
+    userCredential = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
     return userCredential!.user != null;
   }
 
-  static Future<UserCredential> signInAnonymously() => _auth.signInAnonymously();
+  static Future<UserCredential> signInAnonymously() =>
+      _auth.signInAnonymously();
 
   static Future<bool> register(String email, String password) async {
     userCredential = await _auth.createUserWithEmailAndPassword(
@@ -22,14 +24,12 @@ class AuthService {
     return userCredential!.user != null;
   }
 
-
-
-
   static Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
     // Create a new credential
     oAuthCredential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
@@ -43,7 +43,7 @@ class AuthService {
     return _auth.signOut();
   }
 
- static Future<void> deleteAccount() {
-   return _auth.currentUser!.delete();
- }
+  static Future<void> deleteAccount() {
+    return _auth.currentUser!.delete();
+  }
 }

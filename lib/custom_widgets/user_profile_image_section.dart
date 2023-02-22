@@ -5,7 +5,9 @@ import '../providers/user_provider.dart';
 
 class UserProfileImageSection extends StatelessWidget {
   final UserProvider userProvider;
-  const UserProfileImageSection({Key? key, required this.userProvider}) : super(key: key);
+
+  const UserProfileImageSection({Key? key, required this.userProvider})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +20,20 @@ class UserProfileImageSection extends StatelessWidget {
             elevation: 5,
             child: userProvider.userModel!.imageUrl == null
                 ? const Icon(
-              Icons.person,
-              size: 100,
-              color: Colors.grey,
-            )
+                    Icons.person,
+                    size: 100,
+                    color: Colors.grey,
+                  )
                 : CachedNetworkImage(
-              width: 90,
-              height: 90,
-              placeholder: (context, url) => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              errorWidget: (context, url, error) =>
-              const Icon(Icons.error),
-              imageUrl: userProvider.userModel!.imageUrl!,
-            ),
+                    width: 90,
+                    height: 90,
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                    imageUrl: userProvider.userModel!.imageUrl!,
+                  ),
           ),
           const SizedBox(
             width: 15,
@@ -43,8 +45,8 @@ class UserProfileImageSection extends StatelessWidget {
               Text(
                 userProvider.userModel!.displayName ?? 'No Display Name',
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                  color: Colors.white,
-                ),
+                      color: Colors.white,
+                    ),
               ),
               Text(
                 userProvider.userModel!.email,

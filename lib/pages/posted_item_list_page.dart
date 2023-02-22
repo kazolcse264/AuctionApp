@@ -22,7 +22,13 @@ class PostedItemListPage extends StatelessWidget {
           itemCount: provider.productList.length,
           itemBuilder: (context, index) {
             final productModel = provider.productList[index];
-            final isExpired = productModel.auctionExpiredDateModel.timestamp.compareTo(Timestamp.fromDate(DateTime.now()),)  < 0 ? true: false;
+            final isExpired =
+                productModel.auctionExpiredDateModel.timestamp.compareTo(
+                          Timestamp.fromDate(DateTime.now()),
+                        ) <
+                        0
+                    ? true
+                    : false;
             return Padding(
               padding: const EdgeInsets.all(4.0),
               child: InkWell(
@@ -37,21 +43,36 @@ class PostedItemListPage extends StatelessWidget {
                         width: 70,
                       ),
                       tileColor: Colors.tealAccent.shade100,
-                      title:  (isExpired) ?  RichText(
-                        text:  TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(text: productModel.productName, style: const TextStyle(color: Colors.black,fontSize: 18, fontWeight: FontWeight.bold,),),
-                            const TextSpan(text: 'Expired', style: TextStyle(color: Colors.red,fontSize: 20,),)
-                          ],
-                        ),
-                      ):Text(
-                        productModel.productName,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
+                      title: (isExpired)
+                          ? RichText(
+                              text: TextSpan(
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: productModel.productName,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const TextSpan(
+                                    text: 'Expired',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 20,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          : Text(
+                              productModel.productName,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
                       subtitle: Text(
                         'Expired Date: ${getFormattedDate(productModel.auctionExpiredDateModel.timestamp.toDate())}',
                         style: const TextStyle(

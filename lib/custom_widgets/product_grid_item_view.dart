@@ -6,17 +6,20 @@ import '../models/product_models.dart';
 import '../pages/product_details_page.dart';
 import '../utils/constants.dart';
 
-
 class ProductGridItemView extends StatelessWidget {
   final ProductModel productModel;
-  const ProductGridItemView({Key? key, required this.productModel,})
-      : super(key: key);
+
+  const ProductGridItemView({
+    Key? key,
+    required this.productModel,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, ProductDetailsPage.routeName, arguments: productModel);
+        Navigator.pushNamed(context, ProductDetailsPage.routeName,
+            arguments: productModel);
       },
       child: ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(45.0)),
@@ -29,7 +32,8 @@ class ProductGridItemView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: CachedNetworkImage(
-                      imageUrl: productModel.thumbnailImageModel.imageDownloadUrl,
+                      imageUrl:
+                          productModel.thumbnailImageModel.imageDownloadUrl,
                       height: 200,
                       width: 200,
                       placeholder: (context, url) => const Center(
@@ -41,7 +45,11 @@ class ProductGridItemView extends StatelessWidget {
                   ),
                   Text(
                     productModel.productName,
-                    style: const TextStyle(fontSize: 20, color: Colors.cyan,fontWeight: FontWeight.bold,),
+                    style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.cyan,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),

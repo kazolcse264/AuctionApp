@@ -23,8 +23,7 @@ class _ViewProductPageState extends State<ViewProductPage> {
   void didChangeDependencies() {
     Provider.of<ProductProvider>(context, listen: false)
         .getAllAuctionProducts();
-    Provider.of<UserProvider>(context, listen: false)
-        .getUserInfo();
+    Provider.of<UserProvider>(context, listen: false).getUserInfo();
     Provider.of<UserProvider>(context, listen: false)
         .getAllProductsByUserId(AuthService.currentUser!.uid);
     super.didChangeDependencies();
@@ -34,12 +33,18 @@ class _ViewProductPageState extends State<ViewProductPage> {
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
-      drawer: MainDrawer(userProvider: userProvider,),
+      drawer: MainDrawer(
+        userProvider: userProvider,
+      ),
       appBar: AppBar(
         title: const Text('All Products'),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(top: 8.0,right: 8.0,bottom: 8.0,),
+            padding: const EdgeInsets.only(
+              top: 8.0,
+              right: 8.0,
+              bottom: 8.0,
+            ),
             child: FloatingActionButton.extended(
               label: const Text(
                 'Create Auction',

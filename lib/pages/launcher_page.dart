@@ -1,9 +1,5 @@
-
 import 'package:auction_app/pages/veiw_product_page.dart';
 import 'package:flutter/material.dart';
-
-
-
 
 import '../auth/auth_service.dart';
 import 'login_page.dart';

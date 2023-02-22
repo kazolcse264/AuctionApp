@@ -35,6 +35,7 @@ class _CreateAuctionPageState extends State<CreateAuctionPage> {
     productProvider = Provider.of<ProductProvider>(context, listen: false);
     super.didChangeDependencies();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

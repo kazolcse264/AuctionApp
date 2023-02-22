@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../auth/auth_service.dart';
@@ -63,13 +62,14 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           CircleAvatar(
                             backgroundColor: Colors.white,
                             radius: 60,
-                            child: (userProvider.userModel == null) ? Image.asset('assets/images/profile.png') : CircleAvatar(
-                              backgroundImage: NetworkImage(userProvider
-                                  .userModel!
-                                  .imageUrl ??
-                                  'https://avatars.githubusercontent.com/u/74205867?v=4'),
-                              radius: 60,
-                            ),
+                            child: (userProvider.userModel == null)
+                                ? Image.asset('assets/images/profile.png')
+                                : CircleAvatar(
+                                    backgroundImage: NetworkImage(userProvider
+                                            .userModel!.imageUrl ??
+                                        'https://avatars.githubusercontent.com/u/74205867?v=4'),
+                                    radius: 60,
+                                  ),
                           ),
                           Positioned(
                             left: 100,
@@ -77,9 +77,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             top: 80,
                             child: CircleAvatar(
                               child: IconButton(
-                                onPressed: () {
-
-                                },
+                                onPressed: () {},
                                 icon: const Icon(
                                   Icons.add_a_photo,
                                 ),
@@ -106,8 +104,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextButton.icon(
-                              onPressed: () {
-                              },
+                              onPressed: () {},
                               icon: const Icon(Icons.person),
                               label: const Text(
                                 'PROFILE',
@@ -126,99 +123,97 @@ class _UserProfilePageState extends State<UserProfilePage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     color: Colors.white,
-                    child: (userProvider.userModel == null) ? null : Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ListTile(
-                          title: const Text('Full Name'),
-                          subtitle: Text(
-                              userProvider.userModel!.displayName ??
-                                  'Not Set Yet'),
-                          trailing: IconButton(
-                            onPressed: () {
-                              showSingleTextFieldInputDialog(
-                                context: context,
-                                title: 'Full Name',
-                                onSubmit: (value) {
-                                  userProvider.updateUserProfileField(
-                                      userFieldDisplayName,
-                                      value);
-                                },
-                              );
-                            },
-                            icon: const Icon(Icons.edit),
+                    child: (userProvider.userModel == null)
+                        ? null
+                        : Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ListTile(
+                                title: const Text('Full Name'),
+                                subtitle: Text(
+                                    userProvider.userModel!.displayName ??
+                                        'Not Set Yet'),
+                                trailing: IconButton(
+                                  onPressed: () {
+                                    showSingleTextFieldInputDialog(
+                                      context: context,
+                                      title: 'Full Name',
+                                      onSubmit: (value) {
+                                        userProvider.updateUserProfileField(
+                                            userFieldDisplayName, value);
+                                      },
+                                    );
+                                  },
+                                  icon: const Icon(Icons.edit),
+                                ),
+                              ),
+                              ListTile(
+                                title: const Text('Phone'),
+                                subtitle: Text(userProvider.userModel!.phone ??
+                                    'Not Set Yet'),
+                                trailing: IconButton(
+                                  onPressed: () {
+                                    showSingleTextFieldInputDialog(
+                                      context: context,
+                                      title: 'Phone',
+                                      onSubmit: (value) {
+                                        userProvider.updateUserProfileField(
+                                            userFieldPhone, value);
+                                      },
+                                    );
+                                  },
+                                  icon: const Icon(Icons.edit),
+                                ),
+                              ),
+                              ListTile(
+                                title: const Text('Email Address'),
+                                subtitle: Text(userProvider.userModel!.email),
+                              ),
+                              ListTile(
+                                title: const Text('Age'),
+                                subtitle: (userProvider.userModel!.age == null)
+                                    ? const Text('Not Set Yet')
+                                    : Text(
+                                        userProvider.userModel!.age.toString(),
+                                      ),
+                                trailing: IconButton(
+                                  onPressed: () {
+                                    showSingleTextFieldInputDialog(
+                                      context: context,
+                                      title: 'Age',
+                                      onSubmit: (value) {
+                                        userProvider.updateUserProfileField(
+                                            userFieldAge, value);
+                                      },
+                                    );
+                                  },
+                                  icon: const Icon(Icons.edit),
+                                ),
+                              ),
+                              ListTile(
+                                title: const Text('Gender'),
+                                subtitle: Text(userProvider.userModel!.gender ??
+                                    'Not Set Yet'),
+                                trailing: IconButton(
+                                  onPressed: () {
+                                    showSingleTextFieldInputDialog(
+                                      context: context,
+                                      title: 'Gender',
+                                      onSubmit: (value) {
+                                        userProvider.updateUserProfileField(
+                                            userFieldGender, value);
+                                      },
+                                    );
+                                  },
+                                  icon: const Icon(Icons.edit),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                        ListTile(
-                          title: const Text('Phone'),
-                          subtitle: Text(
-                              userProvider.userModel!.phone ??
-                                  'Not Set Yet'),
-                          trailing: IconButton(
-                            onPressed: () {
-                              showSingleTextFieldInputDialog(
-                                context: context,
-                                title: 'Phone',
-                                onSubmit: (value) {
-                                  userProvider.updateUserProfileField(
-                                      userFieldPhone,
-                                      value);
-                                },
-                              );
-                            },
-                            icon: const Icon(Icons.edit),
-                          ),
-                        ),
-                        ListTile(
-                          title: const Text('Email Address'),
-                          subtitle:
-                          Text(userProvider.userModel!.email),
-                        ),
-                        ListTile(
-                          title: const Text('Age'),
-                          subtitle:(userProvider.userModel!.age == null ) ? const Text('Not Set Yet') : Text(
-                            userProvider.userModel!.age.toString(),),
-                          trailing: IconButton(
-                            onPressed: () {
-                              showSingleTextFieldInputDialog(
-                                context: context,
-                                title: 'Age',
-                                onSubmit: (value) {
-                                  userProvider.updateUserProfileField(
-                                      userFieldAge,
-                                      value);
-                                },
-                              );
-                            },
-                            icon: const Icon(Icons.edit),
-                          ),
-                        ),
-                        ListTile(
-                          title: const Text('Gender'),
-                          subtitle: Text(
-                              userProvider.userModel!.gender ??
-                                  'Not Set Yet'),
-                          trailing: IconButton(
-                            onPressed: () {
-                              showSingleTextFieldInputDialog(
-                                context: context,
-                                title: 'Gender',
-                                onSubmit: (value) {
-                                  userProvider.updateUserProfileField(
-                                      userFieldGender,
-                                      value);
-                                },
-                              );
-                            },
-                            icon: const Icon(Icons.edit),
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                 ),
                 //_headerSection(context, userProvider),
-              /*  ListTile(
+                /*  ListTile(
                   leading: const Icon(Icons.call),
                   title: Text(userProvider.userModel!.phone ?? 'Not Set Yet'),
                   trailing: IconButton(
@@ -254,7 +249,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     icon: const Icon(Icons.edit),
                   ),
                 ),*/
-              /*  ListTile(
+                /*  ListTile(
                   leading: const Icon(Icons.location_city),
                   title: Text(
                       userProvider.userModel!.addressModel?.addressLine1 ??
@@ -340,5 +335,4 @@ class _UserProfilePageState extends State<UserProfilePage> {
             ),
     );
   }
-
 }

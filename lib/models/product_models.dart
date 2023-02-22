@@ -1,5 +1,3 @@
-
-
 import 'date_model.dart';
 import 'image_model.dart';
 

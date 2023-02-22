@@ -196,17 +196,19 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                   ),
                 ),
-
           const Padding(
             padding: EdgeInsets.all(8),
             child: Text(
               'All Biding information to this product',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black,),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
           ),
           FutureBuilder<List<BidPriceModel>>(
-            future:
-            productProvider.getBidPriceByProduct(product.productId!),
+            future: productProvider.getBidPriceByProduct(product.productId!),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final commentList = snapshot.data!;
@@ -219,28 +221,34 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: commentList
                         .map((comment) => Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ListTile(
-                          title: Text(comment.bidUserModel.displayName??
-                              comment.bidUserModel.email),
-                          subtitle: Text('$currencySymbol${comment.bidPrice.toString()}',style: const TextStyle(color: Colors.blue),),
-                          leading: comment.bidUserModel.imageUrl == null
-                              ? const Icon(Icons.person)
-                              : CachedNetworkImage(
-                            width: 70,
-                            height: 100,
-                            fit: BoxFit.fill,
-                            imageUrl: comment.bidUserModel.imageUrl!,
-                            placeholder: (context, url) => const Center(
-                                child:
-                                CircularProgressIndicator()),
-                            errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                          ),
-                        ),
-                      ],
-                    ))
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ListTile(
+                                  title: Text(
+                                      comment.bidUserModel.displayName ??
+                                          comment.bidUserModel.email),
+                                  subtitle: Text(
+                                    '$currencySymbol${comment.bidPrice.toString()}',
+                                    style: const TextStyle(color: Colors.blue),
+                                  ),
+                                  leading: comment.bidUserModel.imageUrl == null
+                                      ? const Icon(Icons.person)
+                                      : CachedNetworkImage(
+                                          width: 70,
+                                          height: 100,
+                                          fit: BoxFit.fill,
+                                          imageUrl:
+                                              comment.bidUserModel.imageUrl!,
+                                          placeholder: (context, url) =>
+                                              const Center(
+                                                  child:
+                                                      CircularProgressIndicator()),
+                                          errorWidget: (context, url, error) =>
+                                              const Icon(Icons.error),
+                                        ),
+                                ),
+                              ],
+                            ))
                         .toList(),
                   );
                 }

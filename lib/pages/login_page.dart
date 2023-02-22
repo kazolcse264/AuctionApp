@@ -1,4 +1,3 @@
-
 import 'package:auction_app/pages/signup_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,7 +11,6 @@ import '../models/user_model.dart';
 import '../providers/user_provider.dart';
 import '../utils/helper_functions.dart';
 import 'launcher_page.dart';
-
 
 class LoginPage extends StatefulWidget {
   static const String routeName = '/login';
@@ -36,6 +34,7 @@ class _LoginPageState extends State<LoginPage> {
     userProvider = Provider.of<UserProvider>(context, listen: false);
     super.didChangeDependencies();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,30 +117,54 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: () {
                             _authenticate();
                           },
-                          child: Text("Login".toUpperCase(),style: const TextStyle(fontSize: 20,),),
+                          child: Text(
+                            "Login".toUpperCase(),
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-
-                      RichText(text: TextSpan(
-                          children: [
-                            const TextSpan(text: 'Don\'t have an account??',
-                              style: TextStyle(color: Colors.red),),
-                            TextSpan(text: '\tSingUp',
-                              style: const TextStyle(color: Colors.blue,fontWeight: FontWeight.bold,fontSize: 16,),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () => Navigator.pushNamed(context, SignUpPage.routeName),),
-                          ]
-                      )),
-                      const SizedBox(height: 20,),
-                      const Text('OR',style: TextStyle(color: Colors.red),),
-                      const SizedBox(height: 20, ),
-                      const Text('Sign In with',style: TextStyle(color: Colors.red),),
-                      const SizedBox(height: 20, ),
+                      RichText(
+                          text: TextSpan(children: [
+                        const TextSpan(
+                          text: 'Don\'t have an account??',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        TextSpan(
+                          text: '\tSingUp',
+                          style: const TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => Navigator.pushNamed(
+                                context, SignUpPage.routeName),
+                        ),
+                      ])),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        'OR',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        'Sign In with',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       InkWell(
-                        onTap: (){
+                        onTap: () {
                           _signInWithGoogleAccount(userProvider);
                         },
                         child: Card(
@@ -152,9 +175,19 @@ class _LoginPageState extends State<LoginPage> {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Image.asset('images/google.png',height: 20,width: 20,),
-                                const SizedBox(width: 5,),
-                                const Text('Google',style: TextStyle(fontSize: 22,color: Colors.red),),
+                                Image.asset(
+                                  'images/google.png',
+                                  height: 20,
+                                  width: 20,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                const Text(
+                                  'Google',
+                                  style: TextStyle(
+                                      fontSize: 22, color: Colors.red),
+                                ),
                               ],
                             ),
                           ),
@@ -163,7 +196,8 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   )),
             ],
-          ),),
+          ),
+        ),
       ),
     );
   }
@@ -174,23 +208,24 @@ class _LoginPageState extends State<LoginPage> {
       final email = _emailController.text;
       final password = _passwordController.text;
       try {
-        if(await AuthService.login(email, password)){
-          if(await userProvider.doesUserExist(AuthService.currentUser!.uid)){
+        if (await AuthService.login(email, password)) {
+          if (await userProvider.doesUserExist(AuthService.currentUser!.uid)) {
             EasyLoading.dismiss();
-            if(mounted)Navigator.pushReplacementNamed(context, LauncherPage.routeName);
-          }else{
+            if (mounted)
+              Navigator.pushReplacementNamed(context, LauncherPage.routeName);
+          } else {
             EasyLoading.dismiss();
-            if(mounted)showMsg(context, 'Please sign up first');
+            if (mounted) showMsg(context, 'Please sign up first');
           }
         }
         EasyLoading.dismiss();
-
       } on FirebaseAuthException catch (error) {
         EasyLoading.dismiss();
         showMsg(context, 'Please sign up first');
       }
     }
   }
+
   void _signInWithGoogleAccount(UserProvider userProvider) async {
     try {
       final credential = await AuthService.signInWithGoogle();
@@ -206,13 +241,19 @@ class _LoginPageState extends State<LoginPage> {
           displayName: credential.user!.displayName,
           phone: credential.user!.phoneNumber,
         );
-        await userProvider.addUser(userModel).then((value) => Navigator.pushReplacementNamed(
-          context, LauncherPage.routeName,),);
+        await userProvider.addUser(userModel).then(
+              (value) => Navigator.pushReplacementNamed(
+                context,
+                LauncherPage.routeName,
+              ),
+            );
         EasyLoading.dismiss();
-      }else{
-        if(mounted){
+      } else {
+        if (mounted) {
           Navigator.pushReplacementNamed(
-            context, LauncherPage.routeName,);
+            context,
+            LauncherPage.routeName,
+          );
         }
       }
     } catch (error) {

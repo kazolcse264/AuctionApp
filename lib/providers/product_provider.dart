@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
@@ -10,10 +9,10 @@ import '../models/image_model.dart';
 import '../models/product_models.dart';
 import '../utils/constants.dart';
 
-
 class ProductProvider extends ChangeNotifier {
   List<ProductModel> auctionProductList = [];
   List<num> bidPriceList = [];
+
   Future<void> addAuction(ProductModel productModel) =>
       DbHelper.addAuction(productModel);
 
@@ -21,17 +20,17 @@ class ProductProvider extends ChangeNotifier {
     return DbHelper.addBidPrice(bidPriceModel);
   }
 
-
   Future<List<BidPriceModel>> getBidPriceByProduct(String proId) async {
     final snapshot = await DbHelper.getBidPriceByProduct(proId);
     final bidPriceList = List.generate(snapshot.docs.length,
-            (index) => BidPriceModel.fromMap(snapshot.docs[index].data()));
+        (index) => BidPriceModel.fromMap(snapshot.docs[index].data()));
     return bidPriceList;
   }
-  getAllAuctionProducts(){
+
+  getAllAuctionProducts() {
     DbHelper.getAllAuctionProducts().listen((snapshots) {
       auctionProductList = List.generate(snapshots.docs.length,
-              (index) => ProductModel.fromMap(snapshots.docs[index].data()));
+          (index) => ProductModel.fromMap(snapshots.docs[index].data()));
       notifyListeners();
     });
   }
@@ -51,5 +50,4 @@ class ProductProvider extends ChangeNotifier {
     final downloadUrl = await snapshot.ref.getDownloadURL();
     return ImageModel(title: imageName, imageDownloadUrl: downloadUrl);
   }
-
 }

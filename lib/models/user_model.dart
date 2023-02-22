@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 const String collectionUsers = 'Users';
 const String userFieldUserId = 'userId';
 const String userFieldDisplayName = 'displayName';
@@ -19,7 +20,6 @@ class UserModel {
   String? age;
   Timestamp? userCreationTime;
 
-
   UserModel({
     this.userId,
     this.displayName,
@@ -29,7 +29,6 @@ class UserModel {
     required this.email,
     this.age,
     this.userCreationTime,
-
   });
 
   Map<String, dynamic> toMap() {
@@ -42,14 +41,13 @@ class UserModel {
       userFieldEmail: email,
       userFieldAge: age,
       userFieldUserCreationTime: userCreationTime,
-
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) => UserModel(
         userId: map[userFieldUserId],
         displayName: map[userFieldDisplayName],
-    imageUrl: map[userFieldUserImageUrl],
+        imageUrl: map[userFieldUserImageUrl],
         gender: map[userFieldGender],
         phone: map[userFieldPhone],
         email: map[userFieldEmail],
